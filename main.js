@@ -111,7 +111,7 @@ window.onload = getData(api + `now_playing?api_key=${apiKey}`, (result) => {
 
   parLand.textContent=result[0]["overview"];
   renderCards(result);
-  localStorage.setItem('api',JSON.stringify(api + `now_playing?api_key=${apiKey}`))
+  localStorage.setItem('api',JSON.stringify(api + `now_playing?api_key=${apiKey}&page=1`))
 
 });
 
@@ -138,7 +138,7 @@ filterList.forEach((element) => {
   filterElement.addEventListener("click", (e) => {
     getData(api + `${e.target.id}?api_key=${apiKey}`, (result) => {
       renderCards(result);
-      localStorage.setItem('api',JSON.stringify(api + `${e.target.id}?api_key=${apiKey}`))
+      localStorage.setItem('api',JSON.stringify(api + `${e.target.id}?api_key=${apiKey}&page=1`))
     });
     let children = document.querySelectorAll(".filter>div");
     children.forEach((helo)=>{
@@ -153,21 +153,7 @@ filterList.forEach((element) => {
 
 
 
-search.addEventListener("keyup", (e) => {
-  if (!e.target.value) {
-    getData(api + `now_playing?api_key=${apiKey}`, (result) => {
-      renderCards(result);
-    });
-  } else {
-    getData(
-      api.replace("movie/", "search") +
-        `/movie?api_key=${apiKey}&query=${e.target.value}`,
-      (result) => {
-        renderCards(result);
-      }
-    );
-  }
-});
+
 
 
 

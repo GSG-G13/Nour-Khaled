@@ -110,7 +110,7 @@ window.onload = getData(api + `airing_today?api_key=${apiKey}&pag`, (result) => 
   titleLand.textContent=result[0]["name"];
 
   parLand.textContent=result[0]["overview"];
-  localStorage.setItem('api',JSON.stringify(api + `airing_today?api_key=${apiKey}&pag`))
+  localStorage.setItem('api',JSON.stringify(api + `airing_today?api_key=${apiKey}&page=1`))
   renderCards(result);
 });
 
@@ -138,7 +138,7 @@ filterList.forEach((element) => {
     getData(api + `${e.target.id}?api_key=${apiKey}`, (result) => {
       renderCards(result);
     });
-    localStorage.setItem('api',JSON.stringify(api + `${e.target.id}?api_key=${apiKey}`))
+    localStorage.setItem('api',JSON.stringify(api + `${e.target.id}?api_key=${apiKey}&page=1`))
     let children = document.querySelectorAll(".filter>div");
     children.forEach((helo)=>{
       helo.className="";
@@ -152,22 +152,7 @@ filterList.forEach((element) => {
 
 
 
-search.addEventListener("keyup", (e) => {
-  if (!e.target.value) {
-    https://api.themoviedb.org/3/search/tv?api_key=b9da8a8928ade30c5680978edd9a4330&query=a&page=1
-    getData(api + `airing_today?api_key=${apiKey}`, (result) => {
-      renderCards(result);
-    });
-  } else {
-    getData(
-      api.replace("movie/", "search") +
-        `/movie?api_key=${apiKey}&query=${e.target.value}`,
-      (result) => {
-        renderCards(result);
-      }
-    );
-  }
-});
+
 
 
 
