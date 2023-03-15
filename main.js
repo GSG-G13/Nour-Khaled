@@ -50,6 +50,7 @@ const renderCards = (arr) => {
     const iconThree = document.createElement("i");
     iconThree.className="fa-solid fa-circle-play";
 
+    
 
     const desc = document.createElement("div");
     desc.classList.add("main-discription");
@@ -146,7 +147,7 @@ filterList.forEach((element) => {
 
 });
 
-let search = document.querySelector(".search");
+
 
 search.addEventListener("keyup", (e) => {
   if (!e.target.value) {
@@ -164,3 +165,61 @@ search.addEventListener("keyup", (e) => {
   }
 });
 
+
+
+filterList.forEach((element) => {
+  let filterElement = createFilter(element);
+  filterElement.id = element.toLowerCase().replace(" ", "_");
+  filterElement.textContent = element;
+  filter.appendChild(filterElement);
+
+  filterElement.addEventListener("click", (e) => {
+    getData(api + `${e.target.id}?api_key=${apiKey}&page=1`, (result) => {
+      renderCards(result);
+      localStorage.setItem('api', JSON.stringify(api + `${e.target.id}?api_key=${apiKey}&page=1`))
+    });
+  });
+});
+
+let search = document.querySelector(".search");
+
+search.addEventListener("keyup", (e) => {
+  if (!e.target.value) {
+    getData(api + `now_playing?api_key=${apiKey}`, (result) => {
+      
+      renderCards(result);
+    });
+  } else {
+    getData(
+      api.replace("movie/", "search") +
+        `/movie?api_key=${apiKey}&query=${e.target.value}&page=1`,
+      (result) => {
+        localStorage.setItem('api',JSON.stringify(api.replace("movie/", "search") +
+        `/movie?api_key=${apiKey}&query=${e.target.value}&page=1`))
+        renderCards(result);
+      }
+    );
+  }
+});
+
+let pages = [1, 2, 3, 4, 5];
+  let pagesList = document.querySelector(".pages-list");
+
+  pages.forEach((element) => {
+    let page = document.createElement("li");
+    page.classList.add("page");
+    page.textContent = element;
+    pagesList.appendChild(page);
+
+    page.addEventListener('click',(e)=>{
+      getData(`${JSON.parse(localStorage.getItem('api')).slice(0, -1)}${element}`, (result)=>{
+        renderCards(result)
+      });
+      e.target.classList.add('active')
+      // document.querySelectorAll('.page').forEach((el)=>{
+      //   if(el != element){
+      //     el.classList.remove('active')
+      //   }
+      // })
+    })
+  });
