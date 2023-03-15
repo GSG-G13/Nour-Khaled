@@ -1,6 +1,8 @@
 const apiKey = "b9da8a8928ade30c5680978edd9a4330";
 const api = "https://api.themoviedb.org/3/movie/";
 
+let search = document.querySelector(".search");
+
 const getData = (url, cb) => {
   const xhr = new XMLHttpRequest();
 
@@ -114,7 +116,7 @@ window.onload = getData(api + `now_playing?api_key=${apiKey}`, (result) => {
 
 const filterList = ["Now Playing", "Popular", "Top Rated", "Upcoming"];
 
-const list = document.querySelector("main");
+const list = document.querySelector(".cards-grid");
 
 let filter = document.querySelector(".filter");
 
@@ -181,7 +183,7 @@ filterList.forEach((element) => {
   });
 });
 
-let search = document.querySelector(".search");
+
 
 search.addEventListener("keyup", (e) => {
   if (!e.target.value) {
