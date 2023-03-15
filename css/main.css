@@ -148,12 +148,19 @@ main {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
+  padding-bottom: 120px;
 }
 .card-full {
   display: flex;
   flex-direction: column;
   width: 23%;
   position: relative;
+  max-height: 580px;
+  overflow: hidden;
+  border-radius: 20px;
+  box-shadow: 2px 2px 16px rgba(255,255,255,.1);
+  margin-top: 24px;
+  margin-right: 24px
 }
 .card-full img {
   width: 100%;
@@ -221,4 +228,13 @@ h4 {
 .lpt {
   display: flex;
   gap: 0.5rem;
+}
+
+.filter{
+  display: flex;
+  width: 100%;
+  justify-content: center;
+  gap: 1.5rem;
+  color: white;
+  cursor: pointer;
 }
