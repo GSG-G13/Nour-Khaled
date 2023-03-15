@@ -211,10 +211,13 @@ nav .fa-clipboard-list::before {
 }
 .fa-star {
   position: absolute;
-  right: 20px;
-  top: 20px;
-  color: #e2af0b;
-  font-size: 1.2rem;
+    right: 20px;
+    top: 20px;
+    color: #e2af0b;
+    font-size: 0.8rem;
+    padding: 0.5rem;
+    border-radius: 8px;
+    background-color: #111111b5;
 }
 .fa-star::before {
   padding-right: 0.3rem;
