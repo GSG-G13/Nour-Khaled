@@ -25,7 +25,10 @@ const renderCards = (arr) => {
     card.classList.add("card-full");
 
     const img = document.createElement("img");
-    img.src = `https://image.tmdb.org/t/p/w500${element.backdrop_path}`;
+    if(element.backdrop_path==null){
+      img.src = `code1.jpg`;
+    }
+    else {img.src = `https://image.tmdb.org/t/p/w500${element.backdrop_path}`}
 
     const rating = document.createElement("div");
     rating.className="card-rating fa-solid fa-star";
@@ -63,7 +66,7 @@ const renderCards = (arr) => {
 
     const year = document.createElement("div");
     year.classList.add("year");
-    year.textContent = new Date(element.release_date).getFullYear();
+    year.textContent = new Date(element.first_air_date).getFullYear();
 
     const discription = document.createElement("div");
     discription.classList.add("discription");
@@ -102,10 +105,10 @@ const renderCards = (arr) => {
 };
 
 
-window.onload = getData(api + `airing_today?api_key=${apiKey}`, (result) => {
-  landPhoto.src= `https://image.tmdb.org/t/p/w500${result[0].poster_path}`;
+window.onload = getData(api + `airing_today?api_key=${apiKey}&pag`, (result) => {
+  landPhoto.src= `https://image.tmdb.org/t/p/w500${result[5].poster_path}`;
   console.log(result[0]);
-  titleLand.textContent=result[0]["original_title"];
+  titleLand.textContent=result[0]["name"];
   console.log(titleLand);
 
   parLand.textContent=result[0]["overview"];
@@ -114,7 +117,7 @@ window.onload = getData(api + `airing_today?api_key=${apiKey}`, (result) => {
   renderCards(result);
 });
 
-const filterList = [];
+const filterList = ["Airing today","Top Rated","Popular"];
 
 const list = document.querySelector(".cards-grid");
 
@@ -153,7 +156,8 @@ filterList.forEach((element) => {
 
 search.addEventListener("keyup", (e) => {
   if (!e.target.value) {
-    getData(api + `now_playing?api_key=${apiKey}`, (result) => {
+    https://api.themoviedb.org/3/search/tv?api_key=b9da8a8928ade30c5680978edd9a4330&query=a&page=1
+    getData(api + `airing_today?api_key=${apiKey}`, (result) => {
       renderCards(result);
     });
   } else {
@@ -175,17 +179,17 @@ search.addEventListener("keyup", (e) => {
 
 search.addEventListener("keyup", (e) => {
   if (!e.target.value) {
-    getData(api + `now_playing?api_key=${apiKey}`, (result) => {
+    getData(api + `airing_today?api_key=${apiKey}`, (result) => {
       
       renderCards(result);
     });
   } else {
     getData(
-      api.replace("movie/", "search") +
-        `/movie?api_key=${apiKey}&query=${e.target.value}&page=1`,
+      api.replace("tv/", "search") +
+        `/tv?api_key=${apiKey}&query=${e.target.value}&page=1`,
       (result) => {
-        localStorage.setItem('api',JSON.stringify(api.replace("movie/", "search") +
-        `/movie?api_key=${apiKey}&query=${e.target.value}&page=1`))
+        localStorage.setItem('api',JSON.stringify(api.replace("tv/", "search") +
+        `/tv?api_key=${apiKey}&query=${e.target.value}&page=1`))
         renderCards(result);
       }
     );
@@ -206,10 +210,5 @@ let pages = [1, 2, 3, 4, 5];
         renderCards(result)
       });
       e.target.classList.add('active')
-      // document.querySelectorAll('.page').forEach((el)=>{
-      //   if(el != element){
-      //     el.classList.remove('active')
-      //   }
-      // })
     })
   });
