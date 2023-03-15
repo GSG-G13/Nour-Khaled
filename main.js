@@ -25,7 +25,10 @@ const renderCards = (arr) => {
     card.classList.add("card-full");
 
     const img = document.createElement("img");
-    img.src = `https://image.tmdb.org/t/p/w500${element.poster_path}`;
+    if(element.backdrop_path==null){
+      img.src = `code1.jpg`;
+    }
+    else {img.src = `https://image.tmdb.org/t/p/w500${element.poster_path}`}
 
     const rating = document.createElement("div");
     rating.className="card-rating fa-solid fa-star";
