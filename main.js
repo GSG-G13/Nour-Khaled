@@ -169,19 +169,7 @@ search.addEventListener("keyup", (e) => {
 
 
 
-filterList.forEach((element) => {
-  let filterElement = createFilter(element);
-  filterElement.id = element.toLowerCase().replace(" ", "_");
-  filterElement.textContent = element;
-  filter.appendChild(filterElement);
 
-  filterElement.addEventListener("click", (e) => {
-    getData(api + `${e.target.id}?api_key=${apiKey}&page=1`, (result) => {
-      renderCards(result);
-      localStorage.setItem('api', JSON.stringify(api + `${e.target.id}?api_key=${apiKey}&page=1`))
-    });
-  });
-});
 
 
 
