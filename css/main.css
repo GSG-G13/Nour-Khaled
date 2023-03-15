@@ -58,7 +58,6 @@ h4,
 h5,
 h6 {
   overflow-wrap: break-word;
-  color: var(--main-color-3);
 }
 ol,
 ul {
@@ -88,6 +87,7 @@ nav {
   margin: 2rem;
   background-image: linear-gradient(231deg, black, #ffbb0098, black);
   height: 80vh;
+  position: relative;
 }
 .landing .face-landing {
   flex: 1 1;
@@ -101,18 +101,35 @@ nav {
   gap: 3rem;
   flex-direction: column;
   justify-content: center;
-  align-items: center;
+  align-items: flex-start;
   flex: 1 1;
+  padding-left: 2rem;
+}
+.bar-left {
+  display: flex;
+  height: 100%;
+  width: 4rem;
+  gap: 2rem;
+  color: aliceblue;
+  background-color: #414141;
+  flex-direction: row;
+  position: absolute;
+  left: 0;
+  justify-content: center;
+  writing-mode: vertical-lr;
+  align-items: center;
+  transform: rotate(180deg);
 }
 .left-side h2 {
   color: aliceblue;
   font-weight: 800;
-  font-size: 4rem;
+  text-align: center;
+  font-size: 2.5rem;
 }
 .left-side p {
   color: #a6a7a8;
   width: 75%;
-  font-size: 1.5rem;
+  font-size: 1.2rem;
 }
 .logo {
   font-family: none;
@@ -120,7 +137,7 @@ nav {
   letter-spacing: -9px;
 }
 .search {
-  height: 40px;
+  height: 46px;
   width: 27%;
   border-radius: 22px;
   padding: 0 1rem;
@@ -156,15 +173,17 @@ main {
   width: 23%;
   position: relative;
   max-height: 580px;
-  overflow: hidden;
-  border-radius: 20px;
-  box-shadow: 2px 2px 16px rgba(255,255,255,.1);
+  border-radius: 8x;
+  box-shadow: 2px 2px 16px rgba(255, 255, 255, 0.1);
   margin-top: 24px;
-  margin-right: 24px
+  margin-right: 24px;
 }
 .card-full img {
   width: 100%;
   aspect-ratio: 1;
+  border-top-right-radius:8px;
+  border-top-left-radius:8px;
+  transition:all 0.5s;
 }
 
 .img-discription {
@@ -174,16 +193,21 @@ main {
   position: relative;
   height: fit-content;
   color: aliceblue;
+  transition:all 0.5s;
+
 }
 .main-discription {
   display: flex;
   justify-content: space-around;
   align-items: center;
   background-color: #222221;
+  width: 350px;
 }
 .discription {
   width: 100%;
   padding: 1rem;
+  color: #dadada;
+  display: none;
 }
 .fa-star {
   position: absolute;
@@ -224,17 +248,26 @@ h4 {
   border: 1px solid aliceblue;
   align-items: center;
   justify-content: center;
+  cursor: pointer;
 }
 .lpt {
   display: flex;
   gap: 0.5rem;
 }
 
-.filter{
+.filter {
   display: flex;
   width: 100%;
   justify-content: center;
   gap: 1.5rem;
   color: white;
   cursor: pointer;
+}
+.filter > div {
+  padding: 1rem 2rem;
+  backdrop-filter: contrast(0.5);
+}
+
+.click {
+  background-color: red;
 }
