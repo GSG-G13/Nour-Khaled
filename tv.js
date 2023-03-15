@@ -107,13 +107,10 @@ const renderCards = (arr) => {
 
 window.onload = getData(api + `airing_today?api_key=${apiKey}&pag`, (result) => {
   landPhoto.src= `https://image.tmdb.org/t/p/w500${result[5].poster_path}`;
-  console.log(result[0]);
   titleLand.textContent=result[0]["name"];
-  console.log(titleLand);
 
   parLand.textContent=result[0]["overview"];
-  console.log(parLand);
-
+  localStorage.setItem('api',JSON.stringify(api + `airing_today?api_key=${apiKey}&pag`))
   renderCards(result);
 });
 
@@ -141,6 +138,7 @@ filterList.forEach((element) => {
     getData(api + `${e.target.id}?api_key=${apiKey}`, (result) => {
       renderCards(result);
     });
+    localStorage.setItem('api',JSON.stringify(api + `${e.target.id}?api_key=${apiKey}`))
     let children = document.querySelectorAll(".filter>div");
     children.forEach((helo)=>{
       helo.className="";
