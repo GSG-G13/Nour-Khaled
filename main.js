@@ -107,14 +107,12 @@ const renderCards = (arr) => {
 
 window.onload = getData(api + `now_playing?api_key=${apiKey}`, (result) => {
   landPhoto.src= `https://image.tmdb.org/t/p/w500${result[0].poster_path}`;
-  console.log(result[0]);
   titleLand.textContent=result[0]["original_title"];
-  console.log(titleLand);
 
   parLand.textContent=result[0]["overview"];
-  console.log(parLand);
-
   renderCards(result);
+  localStorage.setItem('api',JSON.stringify(api + `now_playing?api_key=${apiKey}`))
+
 });
 
 const filterList = ["Now Playing", "Popular", "Top Rated", "Upcoming"];
@@ -140,6 +138,7 @@ filterList.forEach((element) => {
   filterElement.addEventListener("click", (e) => {
     getData(api + `${e.target.id}?api_key=${apiKey}`, (result) => {
       renderCards(result);
+      localStorage.setItem('api',JSON.stringify(api + `${e.target.id}?api_key=${apiKey}`))
     });
     let children = document.querySelectorAll(".filter>div");
     children.forEach((helo)=>{
