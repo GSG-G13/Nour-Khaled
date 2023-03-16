@@ -273,12 +273,14 @@ h4 {
   flex-direction: row;
   justify-content: center;
   gap: 1rem;
-
+  margin-bottom: 4rem;
 }
 
 .page{
-  cursor: pointer;
-  
+  padding: 1rem;
+    cursor: pointer;
+    background-color: #3d3d3c;
+    border-radius: 2px;
 }
 
  .active {
