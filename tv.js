@@ -1,7 +1,7 @@
 const apiKey = "b9da8a8928ade30c5680978edd9a4330";
 const api = "https://api.themoviedb.org/3/tv/";
 
-let search = document.querySelector(".search");
+const search = document.querySelector(".search");
 
 const getData = (url, cb) => {
   const xhr = new XMLHttpRequest();
@@ -105,7 +105,7 @@ const renderCards = (arr) => {
 };
 
 
-window.onload = getData(api + `airing_today?api_key=${apiKey}&pag`, (result) => {
+ getData(api + `airing_today?api_key=${apiKey}&pag`, (result) => {
   landPhoto.src= `https://image.tmdb.org/t/p/w500${result[5].poster_path}`;
   titleLand.textContent=result[0]["name"];
 
@@ -118,7 +118,7 @@ const filterList = ["Airing today","Top Rated","Popular"];
 
 const list = document.querySelector(".cards-grid");
 
-let filter = document.querySelector(".filter");
+const filter = document.querySelector(".filter");
 
 
 const createFilter = (str) => {
@@ -179,8 +179,8 @@ search.addEventListener("keyup", (e) => {
   }
 });
 
-let pages = [1, 2, 3, 4, 5];
-  let pagesList = document.querySelector(".pages-list");
+const pages = [1, 2, 3, 4, 5];
+  const pagesList = document.querySelector(".pages-list");
 
   pages.forEach((element) => {
     let page = document.createElement("li");

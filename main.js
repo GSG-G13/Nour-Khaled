@@ -105,7 +105,7 @@ const renderCards = (arr) => {
 };
 
 
-window.onload = getData(api + `now_playing?api_key=${apiKey}`, (result) => {
+ getData(api + `now_playing?api_key=${apiKey}`, (result) => {
   landPhoto.src= `https://image.tmdb.org/t/p/w500${result[0].poster_path}`;
   titleLand.textContent=result[0]["original_title"];
 
@@ -119,7 +119,7 @@ const filterList = ["Now Playing", "Popular", "Top Rated", "Upcoming"];
 
 const list = document.querySelector(".cards-grid");
 
-let filter = document.querySelector(".filter");
+const filter = document.querySelector(".filter");
 
 
 const createFilter = (str) => {
@@ -180,8 +180,8 @@ search.addEventListener("keyup", (e) => {
   }
 });
 
-let pages = [1, 2, 3, 4, 5];
-  let pagesList = document.querySelector(".pages-list");
+const pages = [1, 2, 3, 4, 5];
+  const pagesList = document.querySelector(".pages-list");
 
   pages.forEach((element) => {
     let page = document.createElement("li");
